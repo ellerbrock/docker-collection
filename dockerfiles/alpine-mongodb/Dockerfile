@@ -10,13 +10,14 @@ FROM alpine:edge
 MAINTAINER Maik Ellerbrock
 
 # Optional Configuration Parameter
-ARG SYSTEM_TZ         # Timezone
-ARG SERVICE_USER      # Mongo User
-ARG SERVICE_HOME      # Mongo Database Directory
-ARG SERVICE_PORT      # Mongo Port
-ARG SERVICE_LOGFILE   # Mongo Logfile
-ARG SERVICE_LOGLEVEL  # Mongo Loglevel
+ARG SYSTEM_TZ
+ARG SERVICE_USER
+ARG SERVICE_HOME
+ARG SERVICE_PORT
+ARG SERVICE_LOGFILE
+ARG SERVICE_LOGLEVEL
 
+# Default Settings
 ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-mongo}
 ENV SERVICE_HOME ${SERVICE_HOME:-/data/db}

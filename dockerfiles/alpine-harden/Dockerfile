@@ -8,9 +8,9 @@
 FROM alpine:3.5
 
 # Optional Configuration Parameter
-ARG SYSTEM_TZ     # Timezone
-ARG SERVICE_USER  # Username
-ARG SERVICE_HOME  # User Home Directory
+ARG SYSTEM_TZ
+ARG SERVICE_USER
+ARG SERVICE_HOME
 
 # Default Settings
 ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
