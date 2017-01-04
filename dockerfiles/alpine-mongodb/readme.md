@@ -4,7 +4,7 @@
 
 _MongoDB based on Alpine Linux Edge running as unprivileged User_
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-mongodb.svg)](https://hub.docker.com/r/ellerbrock/alpine-mongodb/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-mongodb.svg)](https://hub.docker.com/r/ellerbrock/alpine-mongodb/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-mongodb.svg)](https://hub.docker.com/r/ellerbrock/alpine-mongodb/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-mongodb.svg)](https://hub.docker.com/r/ellerbrock/alpine-mongodb/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-bash-it/status)](https://quay.io/repository/ellerbrock/alpine-mongodb) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
 - Docker: [ellerbrock/alpine-mongodb](https://hub.docker.com/r/ellerbrock/alpine-mongodb/)
 - Quay: [ellerbrock/alpine-mongodb](https://quay.io/repository/ellerbrock/alpine-mongodb)
