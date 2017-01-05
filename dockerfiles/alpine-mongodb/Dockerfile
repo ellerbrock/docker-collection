@@ -23,7 +23,7 @@ ENV SERVICE_USER ${SERVICE_USER:-mongo}
 ENV SERVICE_HOME ${SERVICE_HOME:-/data/db}
 ENV SERVICE_PORT ${SERVICE_PORT:-27017}
 ENV SERVICE_LOGFILE ${SERVICE_LOGFILE:-/data/log/mongod.log}
-ENV SERVICE_LOGLEVEL ${SERVICE_LOGLEVEL:-vvv}
+ENV SERVICE_LOGLEVEL ${SERVICE_LOGLEVEL:-v}
 
 COPY ./entrypoint.sh /
 
@@ -37,8 +37,7 @@ RUN \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  apk del tzdata && \
-  rm -f /tmp/* /etc/apk/cache/*
+  apk del tzdata
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
