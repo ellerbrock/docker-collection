@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/local/bin/dumb-init /bin/sh
 
 echo "starting MongoDB"
 

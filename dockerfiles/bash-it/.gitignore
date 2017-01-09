@@ -3,6 +3,5 @@
 # GitHub:  https://github.com/ellerbrock
 # Twitter: https://twitter.com/frapsoft
 
-.dockerignore
 build.sh
-dockerfiles/dev-*
+

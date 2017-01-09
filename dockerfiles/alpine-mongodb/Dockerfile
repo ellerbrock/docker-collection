@@ -34,10 +34,14 @@ RUN \
   echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
   apk add --no-cache \
     mongodb \
+    openssl \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  apk del tzdata
+  wget -O /usr/local/bin/dumb-init \
+    https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
+  chmod +x /usr/local/bin/dumb-init && \
+  apk del tzdata openssl
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
