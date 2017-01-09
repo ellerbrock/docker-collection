@@ -9,6 +9,9 @@ FROM alpine:edge
 
 MAINTAINER Maik Ellerbrock
 
+ENV VERSION 0.0.1
+ENV DUMP_INIT_VERSION 1.2.0
+
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
 ARG SERVICE_USER

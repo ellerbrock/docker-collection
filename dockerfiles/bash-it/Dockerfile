@@ -45,9 +45,7 @@ RUN \
   ${SERVICE_HOME}/.bash_it/install.sh --silent && \
   echo -e "\n\n# Load bash-completion" >> ${SERVICE_HOME}/.bashrc && \
   echo "[ -f /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion" \
-    >> ${SERVICE_HOME}/.bashrc && \
-  echo -e "\n\n# Fix for grep without color support" >> ${SERVICE_HOME}/.bashrc && \
-  echo "unalias grep" >> ${SERVICE_HOME}/.bashrc
+    >> ${SERVICE_HOME}/.bashrc
 
 ENTRYPOINT [ "/usr/local/bin/dumb-init", "--", "bash" ]
 
