@@ -5,4 +5,5 @@
 
 .dockerignore
 build.sh
+build-dc.sh
 dockerfiles/dev-*

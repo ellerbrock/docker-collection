@@ -7,37 +7,52 @@
 
 FROM alpine:3.5
 
-ENV VERSION 0.0.3
+MAINTAINER Maik Ellerbrock
+
+ENV VERSION 0.0.1
 ENV DUMP_INIT_VERSION 1.2.0
 
 # Optional Configuration Parameter
-ARG SYSTEM_TZ
 ARG SERVICE_USER
 ARG SERVICE_HOME
+ARG SYSTEM_TZ
+ARG EXTERNAL_IP
 
-# Default Settings
+# Required Parameter
+ARG CF_EMAIL
+ARG CF_TOKEN
+ARG CF_ZONEID
+ARG CF_DOMAINID
+ARG CF_DOMAIN
+
+# Default Settings (for optional Parameter)
 ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
-ENV SERVICE_USER ${SERVICE_USER:-app}
+ENV SERVICE_USER ${SERVICE_USER:-cloudflare}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 
-COPY ./harden.sh /root
+ENV EXTERNAL_IP ${EXTERNAL_IP}
+ENV CF_EMAIL ${CF_EMAIL}
+ENV CF_TOKEN ${CF_TOKEN}
+ENV CF_DOMAIN ${CF_DOMAIN}
+ENV CF_DOMAINID ${CF_DOMAINID}
+ENV CF_ZONEID ${CF_ZONEID}
+
+COPY ./entrypoint.sh /
 
 RUN \
-  mkdir -p ${SERVICE_HOME} && \
   adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
-  chown -R ${SERVICE_USER}:${SERVICE_USER} ${SERVICE_HOME} && \
   apk add --no-cache \
-    tzdata \
-    openssl && \
+    curl \
+    openssl \
+    tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  wget -O /usr/local/bin/dumb-init \
+  curl -L -o /usr/local/bin/dumb-init \
     https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
   chmod +x /usr/local/bin/dumb-init && \
-  apk del tzdata openssl && \
-  /root/harden.sh
+  apk del tzdata
 
-WORKDIR /home/${SERVICE_USER}
-
-USER ${SERVICE_USER}
+USER    ${SERVICE_USER}
+WORKDIR ${SERVICE_HOME}
+ENTRYPOINT [ "/entrypoint.sh" ]
 
