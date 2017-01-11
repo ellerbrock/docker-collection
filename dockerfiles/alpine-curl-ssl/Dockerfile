@@ -38,5 +38,5 @@ RUN \
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 
-ENTRYPOINT [ "/usr/local/bin/dumb-init", "--", "/bin/ash" ]
+ENTRYPOINT [ "/usr/local/bin/dumb-init", "/bin/ash" ]
 

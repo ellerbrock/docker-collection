@@ -19,7 +19,6 @@ services:
         EXTERNAL_IP: ${EXTERNAL_IP}
         CF_EMAIL: ${CF_EMAIL}
         CF_TOKEN: ${CF_TOKEN}
-        CF_ZONEID: ${CF_ZONEID}
-        CF_DOMAINID: ${CF_DOMAINID}
-        CF_DOMAIN: ${CF_DOMAIN}
+        CF_ZONE_NAME: ${CF_ZONE_NAME}
+        CF_DOMAIN_NAME: ${CF_DOMAIN_NAME}
 

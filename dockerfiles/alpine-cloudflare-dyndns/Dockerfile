@@ -21,9 +21,8 @@ ARG EXTERNAL_IP
 # Required Parameter
 ARG CF_EMAIL
 ARG CF_TOKEN
-ARG CF_ZONEID
-ARG CF_DOMAINID
-ARG CF_DOMAIN
+ARG CF_ZONE_NAME
+ARG CF_DOMAIN_NAME
 
 # Default Settings (for optional Parameter)
 ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
@@ -33,9 +32,8 @@ ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 ENV EXTERNAL_IP ${EXTERNAL_IP}
 ENV CF_EMAIL ${CF_EMAIL}
 ENV CF_TOKEN ${CF_TOKEN}
-ENV CF_DOMAIN ${CF_DOMAIN}
-ENV CF_DOMAINID ${CF_DOMAINID}
-ENV CF_ZONEID ${CF_ZONEID}
+ENV CF_ZONE_NAME ${CF_ZONE_NAME}
+ENV CF_DOMAIN_NAME ${CF_DOMAIN_NAME}
 
 COPY ./entrypoint.sh /
 
@@ -43,6 +41,7 @@ RUN \
   adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
   apk add --no-cache \
     curl \
+    jq \
     openssl \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
