@@ -26,18 +26,33 @@ function getDomainID() {
 }
 
 function updateDomain() {
-  curl -s \
+  local JSON=$(curl -s \
     -X PUT "https://api.cloudflare.com/client/v4/zones/${CF_ZONEID}/dns_records/${CF_DOMAINID}" \
     -H "X-Auth-Email: ${CF_EMAIL}" \
     -H "X-Auth-Key: ${CF_TOKEN}" \
     -H "Content-Type: application/json" \
-    --data '{"type":"A","name":"'${CF_DOMAIN_NAME}'","content":"'${EXTERNAL_IP}'","ttl":1,"proxied":false}'
+    --data '{"type":"A","name":"'${CF_DOMAIN_NAME}'","content":"'${EXTERNAL_IP}'","ttl":1,"proxied":false}')
+
+ local RESULT=$(echo "${JSON}" | jq .success)
+
+ if [[ ${RESULT} == "true" ]]; then
+    echo "Cloudflare Setting updated successful ..."
+    echo "DNS: ${CF_DOMAIN_NAME} => ${EXTERNAL_IP}"
+    exit
+  else
+    echo "ERROR: Something went wrong :("
+    echo "Cloudflare Result:"
+    echo "------------------"
+    echo ${JSON} | jq
+    exit 1
+  fi
 }
 
 
 # lets run it!
 function main() {
-  local EXTERNAL_IP=${EXTERNAL_IP:-$(curl -s https://api.ipify.org)}
+
+  EXTERNAL_IP=${EXTERNAL_IP:-$(curl -s https://api.ipify.org)}
 
   if [[ ${EXTERNAL_IP} ]] && \
    [[ ${CF_EMAIL} ]] && \
@@ -53,11 +68,8 @@ function main() {
       [[ -z ${CF_TOKEN} ]] && echo "  - CF_TOKEN"
       [[ -z ${CF_ZONE_NAME} ]] && echo "  - CF_ZONE_NAME"
       [[ -z ${CF_DOMAIN_NAME} ]] && echo "  - CF_DOMAIN_NAME"
+    exit 1
   fi
-
-  echo "Start updating DNS Settings ..."
-  echo -e "DNS: ${CF_DOMAIN_NAME} => ${EXTERNAL_IP}\n"
-  echo "Cloudflare Result:"
 }
 
 main
