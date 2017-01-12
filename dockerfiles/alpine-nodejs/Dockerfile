@@ -38,6 +38,6 @@ RUN \
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 
-ENTRYPOINT ["/usr/bin/dumb-init", "node" ]
-CMD [ "." ]
+ENTRYPOINT ["/usr/bin/dumb-init" ]
+CMD [ "node", "." ]
 

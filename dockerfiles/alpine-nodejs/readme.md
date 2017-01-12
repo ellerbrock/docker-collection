@@ -31,13 +31,13 @@ This will start index.js in your current folder.
 
 Lets say you want to run src/run.js (which is in the current directory):
 
-`docker run -v $(PWD):/home/nodejs ellerbrock/alpine-nodejs src/run.js`
+`docker run -v $(PWD):/home/nodejs ellerbrock/alpine-nodejs node src/run.js`
 
+**Pass an Command to Node.js:**
 
-**Run an app from a Volume:**
+Lets say you want to run src/run.js (which is in the current directory):
 
-`docker run -v my-app-name:/home/nodejs ellerbrock/alpine-nodejs`
-
+`docker run -v $(PWD):/home/nodejs ellerbrock/alpine-nodejs node src/run.js`
 
 ## Configuration Parameter
 

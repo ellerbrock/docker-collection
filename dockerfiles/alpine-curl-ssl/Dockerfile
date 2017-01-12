@@ -30,13 +30,14 @@ RUN \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  curl -L -o /usr/local/bin/dumb-init \
+  curl -L -o /usr/bin/dumb-init \
     https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
-  chmod +x /usr/local/bin/dumb-init && \
+  chmod +x /usr/bin/dumb-init && \
   apk del tzdata
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 
-ENTRYPOINT [ "/usr/local/bin/dumb-init", "/bin/ash" ]
+ENTRYPOINT [ "/usr/bin/dumb-init", "curl" ]
+CMD [ "--help" ]
 

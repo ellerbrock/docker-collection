@@ -13,6 +13,12 @@ _MongoDB based on Alpine Linux Edge running as unprivileged User_
 
 `docker pull frapsoft/alpine-mongodb`
 
+## About the Container
+
+As Base Image i use [Alpine Linux](https://alpinelinux.org/) which is lightweight Distribution with a small surface area for security concerns, but with enough functionality for development and interactive debugging.
+
+To prevent zombie reaping processes i run [dumb-init](https://github.com/Yelp/dumb-init) as PID 1 which forwards signals to all processes running in the container. 
+
 ## Configuration Parameter
 
 _These Settings are **optional**, if not set the default values will be used._

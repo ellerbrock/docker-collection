@@ -31,13 +31,15 @@ RUN \
     openssl && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  wget -O /usr/local/bin/dumb-init \
+  wget -O /usr/bin/dumb-init \
     https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
-  chmod +x /usr/local/bin/dumb-init && \
+  chmod +x /usr/bin/dumb-init && \
   apk del tzdata openssl && \
   /root/harden.sh
 
-WORKDIR /home/${SERVICE_USER}
+WORKDIR ${SERVICE_HOME}
 
 USER ${SERVICE_USER}
+
+ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
 
