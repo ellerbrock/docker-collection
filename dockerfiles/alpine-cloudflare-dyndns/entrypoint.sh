@@ -1,4 +1,4 @@
-#!/usr/local/bin/dumb-init /bin/sh
+#!/usr/bin/dumb-init /bin/ash
 
 # Developer: Maik Ellerbrock <opensource@frapsoft.com>
 #
@@ -51,7 +51,6 @@ function updateDomain() {
 
 # lets run it!
 function main() {
-
   EXTERNAL_IP=${EXTERNAL_IP:-$(curl -s https://api.ipify.org)}
 
   if [[ ${EXTERNAL_IP} ]] && \
