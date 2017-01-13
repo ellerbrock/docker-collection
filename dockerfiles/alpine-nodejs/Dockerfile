@@ -33,11 +33,11 @@ RUN \
   wget -O /usr/bin/dumb-init \
     https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
   chmod +x /usr/bin/dumb-init && \
-  apk del tzdata
+  apk del tzdata openssl
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 
-ENTRYPOINT ["/usr/bin/dumb-init" ]
+ENTRYPOINT ["/usr/bin/dumb-init", "--" ]
 CMD [ "node", "." ]
 
