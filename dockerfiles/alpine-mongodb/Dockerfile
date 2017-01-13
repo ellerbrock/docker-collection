@@ -23,9 +23,9 @@ ARG SERVICE_LOGLEVEL
 # Default Settings
 ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-mongo}
-ENV SERVICE_HOME ${SERVICE_HOME:-/data}
+ENV SERVICE_HOME ${SERVICE_HOME:-/data/db}
 ENV SERVICE_PORT ${SERVICE_PORT:-27017}
-ENV SERVICE_LOGFILE ${SERVICE_LOGFILE:-${SERVICE_HOME}/log/mongod.log}
+ENV SERVICE_LOGFILE ${SERVICE_LOGFILE:-/data/log/mongod.log}
 ENV SERVICE_LOGLEVEL ${SERVICE_LOGLEVEL:-v}
 
 COPY ./entrypoint.sh /
@@ -44,6 +44,7 @@ RUN \
   wget -O /usr/bin/dumb-init \
     https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
   chmod +x /usr/bin/dumb-init && \
+  chmod +x /entrypoint.sh && \
   apk del tzdata openssl
 
 USER    ${SERVICE_USER}
