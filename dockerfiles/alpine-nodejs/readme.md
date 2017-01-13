@@ -2,7 +2,7 @@
 
 # alpine-nodejs
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-nodejs.svg)](https://hub.docker.com/r/ellerbrock/alpine-nodejs/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-nodejs.svg)](https://hub.docker.com/r/ellerbrock/alpine-nodejs/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-bash-it/status)](https://quay.io/repository/ellerbrock/alpine-nodejs/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-nodejs.svg)](https://hub.docker.com/r/ellerbrock/alpine-nodejs/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-nodejs.svg)](https://hub.docker.com/r/ellerbrock/alpine-nodejs/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-nodejs/status)](https://quay.io/repository/ellerbrock/alpine-nodejs/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
 - Docker: [ellerbrock/alpine-nodejs](https://hub.docker.com/r/ellerbrock/alpine-nodejs/)
 - Quay: [ellerbrock/alpine-nodejs](https://quay.io/repository/ellerbrock/alpine-nodejs)

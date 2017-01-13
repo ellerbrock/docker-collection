@@ -3,7 +3,7 @@
 # link-checker
 _check links in web documents or full websites_
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/link-checker.svg)](https://hub.docker.com/r/ellerbrock/link-checker/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/link-checker.svg)](https://hub.docker.com/r/ellerbrock/link-checker/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-bash-it/status)](https://quay.io/repository/ellerbrock/link-checker/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/link-checker.svg)](https://hub.docker.com/r/ellerbrock/link-checker/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/link-checker.svg)](https://hub.docker.com/r/ellerbrock/link-checker/) [![Quay Status](https://quay.io/repository/ellerbrock/link-checker/status)](https://quay.io/repository/ellerbrock/link-checker/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
 - Docker: [ellerbrock/link-checker](https://hub.docker.com/r/ellerbrock/link-checker/)
 - Quay: [ellerbrock/link-checker](https://quay.io/repository/ellerbrock/link-checker)

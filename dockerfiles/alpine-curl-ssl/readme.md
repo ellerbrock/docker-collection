@@ -4,7 +4,7 @@
 
 _Curl with SSL support based on Alpine Linux_
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-curl-ssl.svg)](https://hub.docker.com/r/ellerbrock/alpine-curl-ssl/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-curl-ssl.svg)](https://hub.docker.com/r/ellerbrock/alpine-curl-ssl/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-bash-it/status)](https://quay.io/repository/ellerbrock/alpine-curl-ssl/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-curl-ssl.svg)](https://hub.docker.com/r/ellerbrock/alpine-curl-ssl/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-curl-ssl.svg)](https://hub.docker.com/r/ellerbrock/alpine-curl-ssl/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-curl-ssl/status)](https://quay.io/repository/ellerbrock/alpine-curl-ssl/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
 - Docker: [ellerbrock/alpine-curl-ssl](https://hub.docker.com/r/ellerbrock/alpine-curl-ssl/)
 - Quay: [ellerbrock/alpine-curl-ssl](https://quay.io/repository/ellerbrock/alpine-curl-ssl)

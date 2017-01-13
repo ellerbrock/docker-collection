@@ -4,7 +4,7 @@
 
 _Alpine Linux 3.5 harden with an unprivileged user_ 
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-harden.svg)](https://hub.docker.com/r/ellerbrock/alpine-harden/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-harden.svg)](https://hub.docker.com/r/ellerbrock/alpine-harden/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-bash-it/status)](https://quay.io/repository/ellerbrock/alpine-harden) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-harden.svg)](https://hub.docker.com/r/ellerbrock/alpine-harden/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-harden.svg)](https://hub.docker.com/r/ellerbrock/alpine-harden/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-harden/status)](https://quay.io/repository/ellerbrock/alpine-harden) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
 - Docker: [ellerbrock/alpine-harden](https://hub.docker.com/r/ellerbrock/alpine-harden/)
 - Quay: [ellerbrock/alpine-harden](https://quay.io/repository/ellerbrock/alpine-harden)
