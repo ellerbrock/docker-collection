@@ -10,7 +10,6 @@ FROM alpine:3.5
 MAINTAINER Maik Ellerbrock
 
 ENV VERSION 0.0.1
-ENV DUMP_INIT_VERSION 1.2.0
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
@@ -25,15 +24,12 @@ ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 RUN \
   adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
   apk add --no-cache \
+    dumb-init \
     nodejs \
-    openssl \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  wget -O /usr/bin/dumb-init \
-    https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
-  chmod +x /usr/bin/dumb-init && \
-  apk del tzdata openssl
+  apk del tzdata
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}

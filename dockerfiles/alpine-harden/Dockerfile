@@ -8,7 +8,6 @@
 FROM alpine:3.5
 
 ENV VERSION 0.0.3
-ENV DUMP_INIT_VERSION 1.2.0
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
@@ -27,14 +26,11 @@ RUN \
   adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
   chown -R ${SERVICE_USER}:${SERVICE_USER} ${SERVICE_HOME} && \
   apk add --no-cache \
-    tzdata \
-    openssl && \
+    dumb-init \
+    tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  wget -O /usr/bin/dumb-init \
-    https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
-  chmod +x /usr/bin/dumb-init && \
-  apk del tzdata openssl && \
+  apk del tzdata && \
   /root/harden.sh
 
 WORKDIR ${SERVICE_HOME}

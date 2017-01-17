@@ -35,5 +35,4 @@ USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 
 ENTRYPOINT ["/usr/bin/dumb-init", "linkchecker" ]
-CMD [ "--help" ]
 

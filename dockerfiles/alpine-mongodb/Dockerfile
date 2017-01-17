@@ -10,7 +10,6 @@ FROM alpine:edge
 MAINTAINER Maik Ellerbrock
 
 ENV VERSION 0.0.1
-ENV DUMP_INIT_VERSION 1.2.0
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
@@ -36,16 +35,13 @@ RUN \
   chown -R ${SERVICE_USER}:${SERVICE_USER} ${SERVICE_HOME} $(dirname ${SERVICE_LOGFILE}) && \
   echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
   apk add --no-cache \
+    dumb-init \
     mongodb \
-    openssl \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
-  wget -O /usr/bin/dumb-init \
-    https://github.com/Yelp/dumb-init/releases/download/v${DUMP_INIT_VERSION}/dumb-init_${DUMP_INIT_VERSION}_amd64 && \
-  chmod +x /usr/bin/dumb-init && \
   chmod +x /entrypoint.sh && \
-  apk del tzdata openssl
+  apk del tzdata
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
