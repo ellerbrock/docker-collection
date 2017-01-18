@@ -4,6 +4,6 @@
 # Twitter: https://twitter.com/frapsoft
 
 .dockerignore
-build.sh
-build-dc.sh
+build*.sh
 dockerfiles/dev-*
+rancher/dev-*
