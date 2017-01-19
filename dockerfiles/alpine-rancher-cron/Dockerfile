@@ -16,7 +16,9 @@ ENV SRC_DIR ${GOPATH}/src/github.com/socialengine/rancher-cron
 
 RUN \
   adduser -s /sbin/nologin -u 1000 -D rancher-cron && \
-  apk add --no-cache dumb-init && \
+  apk add --no-cache \
+    ca-certificates \ 
+    dumb-init && \
   apk add --no-cache --virtual build-deps \
     build-base \
     bzr \
