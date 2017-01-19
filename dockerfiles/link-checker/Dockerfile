@@ -9,7 +9,7 @@ FROM ubuntu:xenial
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.0.1
+ENV VERSION 0.1.0
 ENV DUMP_INIT_VERSION 1.2.0
 
 # Optional Configuration Parameter
@@ -32,6 +32,7 @@ RUN \
   rm -rf /tmp/* /var/lib/apt/lists/*
 
 USER    ${SERVICE_USER}
+
 WORKDIR ${SERVICE_HOME}
 
 ENTRYPOINT ["/usr/bin/dumb-init", "linkchecker" ]

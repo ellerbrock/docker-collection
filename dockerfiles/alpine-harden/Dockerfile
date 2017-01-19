@@ -7,7 +7,7 @@
 
 FROM alpine:3.5
 
-ENV VERSION 0.0.3
+ENV VERSION 0.1.0
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ

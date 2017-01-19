@@ -44,8 +44,11 @@ RUN \
   apk del tzdata
 
 USER    ${SERVICE_USER}
+
 WORKDIR ${SERVICE_HOME}
+
 VOLUME  ${SERVICE_HOME}
+
 EXPOSE  ${SERVICE_PORT}
 
 ENTRYPOINT [ "/entrypoint.sh" ]

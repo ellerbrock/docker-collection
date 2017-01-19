@@ -9,12 +9,11 @@ FROM alpine:3.5
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.0.1
+ENV VERSION 0.1.0
 
 # Optional Configuration Parameter
-ARG SERVICE_USER
-ARG SERVICE_HOME
 ARG SYSTEM_TZ
+ARG SERVICE_USER
 ARG EXTERNAL_IP
 
 # Required Parameter
@@ -26,7 +25,6 @@ ARG CF_DOMAIN_NAME
 # Default Settings (for optional Parameter)
 ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-cloudflare}
-ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 
 ENV EXTERNAL_IP ${EXTERNAL_IP}
 ENV CF_EMAIL ${CF_EMAIL}
@@ -37,7 +35,7 @@ ENV CF_DOMAIN_NAME ${CF_DOMAIN_NAME}
 COPY ./entrypoint.sh /
 
 RUN \
-  adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
+  adduser -s /sbin/nologin -u 1000 -H -D ${SERVICE_USER} && \
   apk add --no-cache \
     curl \
     dumb-init \
@@ -49,6 +47,6 @@ RUN \
   apk del tzdata
 
 USER    ${SERVICE_USER}
-WORKDIR ${SERVICE_HOME}
+
 ENTRYPOINT [ "/entrypoint.sh" ]
 

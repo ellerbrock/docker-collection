@@ -9,16 +9,27 @@ FROM alpine:3.5
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.0.1
+ENV VERSION 0.0.2
+
+# Optional Configuration Parameter
+ARG SYSTEM_TZ
+ARG SERVICE_USER
+
+# Default Settings (for optional Parameter)
+ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
+ENV SERVICE_USER ${SERVICE_USER:-bench-security}
+
+# Others
 ENV GOPATH /tmp/build
 ENV PATH ${PATH}:${GOPATH}/bin
 ENV SRC_DIR ${GOPATH}/src/github.com/socialengine/rancher-cron
 
 RUN \
-  adduser -s /sbin/nologin -u 1000 -D rancher-cron && \
+  adduser -s /sbin/nologin -u 1000 -H -D rancher-cron && \
   apk add --no-cache \
-    ca-certificates \ 
-    dumb-init && \
+    ca-certificates \
+    dumb-init \
+    tzdata && \
   apk add --no-cache --virtual build-deps \
     build-base \
     bzr \
@@ -26,6 +37,8 @@ RUN \
     go \
     make \
     mercurial && \
+  cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
+  echo "${SYSTEM_TZ}" > /etc/TZ && \
   mkdir -p \
     ${GOPATH}/bin \
     ${GOPATH}/pkg \

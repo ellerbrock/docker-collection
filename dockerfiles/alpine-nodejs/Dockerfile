@@ -9,7 +9,7 @@ FROM alpine:3.5
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.0.1
+ENV VERSION 0.1.0
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
@@ -32,8 +32,10 @@ RUN \
   apk del tzdata
 
 USER    ${SERVICE_USER}
+
 WORKDIR ${SERVICE_HOME}
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--" ]
+
 CMD [ "node", "." ]
 

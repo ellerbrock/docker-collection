@@ -15,7 +15,14 @@ FROM bash:4.4
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.0.4
+ENV VERSION 0.0.5
+
+# Optional Configuration Parameter
+ARG SYSTEM_TZ
+
+# Default Settings (for optional Parameter)
+ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
+
 ENV SERVICE_USER bashit
 ENV SERVICE_HOME /home/${SERVICE_USER}
 
@@ -24,7 +31,10 @@ RUN \
   apk add --no-cache \
     bash-completion \
     dumb-init \
-    git && \
+    git \
+    tzdata && \
+  cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
+  echo "${SYSTEM_TZ}" > /etc/TZ && \
   git clone --depth 1 https://github.com/Bash-it/bash-it.git /tmp/bash_it && \
   cp -R /tmp/bash_it /root/.bash_it && \
   cp -R /tmp/bash_it ${SERVICE_HOME}/.bash_it && \
@@ -35,7 +45,7 @@ RUN \
   cp -R ${SERVICE_HOME}/.bash_it /root && \
   chown -R ${SERVICE_USER}:${SERVICE_USER} ${SERVICE_HOME} && \
   sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd && \
-  apk del git && \
+  apk del git tzdata && \
   rm -rf /tmp/{.}* /tmp/*
 
 USER ${SERVICE_USER}
@@ -46,5 +56,5 @@ RUN \
   ${SERVICE_HOME}/.bash_it/install.sh --silent && \
   echo -e "\n# Load bash-completion\n[ -f /usr/share/bash-completion/bash_completion  ] && source /usr/share/bash-completion/bash_completion" >> ${SERVICE_HOME}/.bashrc
 
-ENTRYPOINT [ "/usr/bin/dumb-init", "/bin/bash" ]
+ENTRYPOINT [ "/usr/bin/dumb-init", "bash" ]
 
