@@ -28,7 +28,7 @@ RUN \
   git clone https://github.com/docker/docker-bench-security.git /tmp/bench-security && \
   cp /tmp/bench-security/*.sh /usr/local/bin && \
   cp -R /tmp/bench-security/tests /usr/local/bin && \
-  apk del git tzdata && \
+  apk del tzdata && \
   rm -rf /tmp/*
 
 WORKDIR /usr/local/bin
