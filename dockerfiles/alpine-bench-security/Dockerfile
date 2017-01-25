@@ -25,6 +25,7 @@ RUN \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
+  rm -rf /usr/bin/docker-* /usr/bin/dockerd && \
   git clone https://github.com/docker/docker-bench-security.git /tmp/bench-security && \
   cp /tmp/bench-security/*.sh /usr/local/bin && \
   cp -R /tmp/bench-security/tests /usr/local/bin && \
