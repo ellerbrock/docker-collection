@@ -3,14 +3,13 @@
 # get-ip
 _A Container that listen on Port 80 and returns the IP (for testing)_
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/get-ip.svg)](https://hub.docker.com/r/ellerbrock/get-ip/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/get-ip.svg)](https://hub.docker.com/r/ellerbrock/get-ip/) [![Quay Status](https://quay.io/repository/ellerbrock/get-ip/status)](https://quay.io/repository/ellerbrock/get-ip/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/get-ip.svg)](https://hub.docker.com/r/ellerbrock/get-ip/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/get-ip.svg)](https://hub.docker.com/r/ellerbrock/get-ip/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
 - Docker: [ellerbrock/get-ip](https://hub.docker.com/r/ellerbrock/get-ip/)
-- Quay: [ellerbrock/get-ip](https://quay.io/repository/ellerbrock/get-ip)
 
 ## Installation
 
-`docker pull ellerbrock/get-ip`
+`docker pull ellerbrock/get-ip:v2`
 
 ## Contact / Social Media
 
