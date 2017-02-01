@@ -18,14 +18,14 @@ ARG SERVICE_HOME
 
 # Default Settings
 ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
-ENV SERVICE_USER ${SERVICE_USER:-mysql}
+ENV SERVICE_USER ${SERVICE_USER:-java}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 
 RUN \
   adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
   apk add --no-cache \
+    openjdk8 \
     dumb-init \
-    mariadb-client \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
@@ -35,5 +35,5 @@ USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 
 ENTRYPOINT [ "/usr/bin/dumb-init" ]
-CMD [ "mysql" ]
+CMD [ "java" ]
 
