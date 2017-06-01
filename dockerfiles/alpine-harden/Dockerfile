@@ -5,9 +5,9 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM alpine:3.5
+FROM alpine:3.6
 
-ENV VERSION 0.1.0
+ENV VERSION 0.2.0
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ

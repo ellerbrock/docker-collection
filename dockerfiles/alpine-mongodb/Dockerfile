@@ -5,11 +5,11 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM alpine:edge
+FROM alpine:3.6
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.0.1
+ENV VERSION 0.1.0
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
