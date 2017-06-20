@@ -5,31 +5,30 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM golang:alpine
+FROM golang:alpine3.6
 
-MAINTAINER Maik Ellerbrock
-
-ENV VERSION 0.0.1
-
-# Optional Configuration Parameter
-ARG SYSTEM_TZ
-
-# Default Settings
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
+ENV GOPATH /go
 
 RUN \
-  adduser -H -h /go -s /sbin/nologin -u 1000 -D go && \
-  apk add --no-cache \
+  adduser -h /site -s /sbin/nologin -u 1000 -D hugo && \
+  apk add --no-cache dumb-init && \
+  apk add --no-cache --virtual .build-deps \
     git \
-    tzdata && \
-  cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
-  echo "${SYSTEM_TZ}" > /etc/TZ && \
-  apk del tzdata && \
-  go get -u -v github.com/spf13/hugo
+    make && \
+  go get github.com/kardianos/govendor && \
+  govendor get github.com/gohugoio/hugo && \
+  cd $GOPATH/src/github.com/gohugoio/hugo && \
+  make install test && \
+  rm -rf $GOPATH/src/* && \
+  apk del .build-deps
 
-USER     go
-WORKDIR /go
+USER hugo
 
-ENTRYPOINT [ "hugo" ]
-CMD        [ "--help" ]
+WORKDIR /site
+
+EXPOSE 1313
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--", "hugo"]
+
+CMD [ "--help" ]
 
