@@ -11,14 +11,16 @@ MAINTAINER Maik Ellerbrock (https://github.com/ellerbrock)
 
 ENV VERSION 0.0.1
 
+WORKDIR /site
+
+COPY ./src/gulpfile.js /site
+
 RUN \
   apk add --no-cache dumb-init && \
-  npm install -g yarn && \
-  yarn global add gulp-cli
-
-USER node
-
-WORKDIR /site
+  npm update && \
+  npm install --global gulp-cli && \
+  npm install gulp gulp-sass && \
+  chown -R node:node /site
 
 VOLUME /site
 
