@@ -26,11 +26,11 @@ RUN \
     git \
     dumb-init \
     openssl && \
-  apk del tzdata
+  sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 VOLUME  ${SERVICE_HOME}
 
-ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-CMD [ "git", "--help" ]
+ENTRYPOINT [ "/usr/bin/dumb-init", "git" ]
+CMD [ "--help" ]

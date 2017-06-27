@@ -14,7 +14,7 @@ ARG SERVICE_USER
 ARG SERVICE_HOME
 
 # Default Settings
-ENV SERVICE_USER ${SERVICE_USER:-libreoffice}
+ENV SERVICE_USER ${SERVICE_USER:-office}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 
 ENV VERSION 0.0.1
@@ -35,5 +35,3 @@ WORKDIR ${SERVICE_HOME}
 VOLUME  ${SERVICE_HOME}
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "/usr/bin/libreoffice" ]
-# CMD [ "" ]
-
