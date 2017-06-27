@@ -1,0 +1,176 @@
+#
+# DevOps Playground
+# =================
+#
+# What you get:
+#
+# Gitlab (Git Server)
+#
+#   - Docker Hub: https://hub.docker.com/r/gitlab/gitlab-ce/
+#   - Documentation: https://about.gitlab.com/installation/
+#
+# Jenkins (CI)
+#
+#   - Docker Hub: https://hub.docker.com/_/jenkins/
+#   - Documentation: https://jenkins.io/doc/
+#
+# Drone (CI)
+#
+#   - Docker Hub: https://hub.docker.com/r/drone/drone/
+#   - Documentation: http://readme.drone.io/
+#
+# GoCD (CI)
+#
+#   - Docker Hub: https://hub.docker.com/r/gocd/gocd-server/
+#   - Documentation: https://docs.gocd.org/current/
+#
+# Nexus (Registry)
+#
+#   - Docker Hub: https://hub.docker.com/r/sonatype/nexus/
+#   - Documentation: https://books.sonatype.com/nexus-book/reference/
+#
+# Registry (Docker Registry)
+#
+#   - Docker Hub: https://hub.docker.com/_/registry/
+#   - Documentation: https://docs.docker.com/registry/
+#
+# Consul (Service Discovery & Central Configuration)
+#
+#   - Docker Hub: https://hub.docker.com/_/consul/
+#   - Documentation: https://www.consul.io/docs/index.html
+#
+# Vault (Secret Management)
+#
+#   - Docker Hub: https://hub.docker.com/_/vault/
+#   - Documentation: https://www.vaultproject.io/docs/index.html
+#
+# ------
+#
+# Ports for WebGUI's:
+#
+# Jenkins: 8080
+# Gitlab: 4000
+# GoCD: 8153
+# Consul: 8500
+# Vault: 8700
+#
+version: '3'
+
+services:
+
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    volumes:
+      # - gitlab-config:/etc/gitlab
+      - gitlab-data:/var/opt/gitlab
+      - gitlab-log:/var/log/gitlab
+    ports:
+      - 4000:80
+    networks:
+      - devops
+
+  jenkins:
+    image: jenkins:latest
+    container_name: jenkins
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    ports:
+      - 8080:8080
+      - 50000:50000
+    networks:
+      - devops
+
+  drone:
+    image: drone/drone:latest
+    container_name: drone
+    volumes:
+      - drone-data:/var/lib/drone/
+    ports:
+      - 8000:8000
+    networks:
+      - devops
+
+  gocd:
+    image: gocd/gocd-server:v17.5.0
+    container_name: gocd
+    volumes:
+      - gocd-data:/godata
+    ports:
+      - 8153:8153
+      - 8154:8154
+    networks:
+      - devops
+
+  nexus:
+    image: sonatype/nexus:latest
+    container_name: nexus
+    volumes:
+      - nexus-data:/opt/sonatype/nexus
+    ports:
+      - 8081:8081
+    networks:
+      - devops
+
+  registry:
+    image: registry:latest
+    container_name: registry
+    volumes:
+      - registry-data:/var/lib/registry
+        # - registry-config:/etc/docker/registry/
+    ports:
+      - 5000:5000
+    networks:
+      - devops
+
+  consul:
+    image: consul:latest
+    container_name: consul
+    volumes:
+      - consul-data:/consul/data
+        # - consul-config:/consul/config
+    ports:
+      - 8300:8300/tcp
+      - 8301:8301/tcp
+      - 8301:8301/udp
+      - 8302:8302/tcp
+      - 8302:8302/udp
+      - 8400:8400/tcp
+      - 8500:8500/tcp
+      - 8600:8600/tcp
+      - 8600:8600/udp
+    networks:
+      - devops
+
+  vault:
+    image: vault:latest
+    container_name: vault
+    volumes:
+      - vault-data:/vault/file
+      - vault-logs:/vault/logs
+    environment:
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8700
+    ports:
+      - 8700:8700
+    networks:
+      - devops
+
+networks:
+  devops:
+    driver: bridge
+
+volumes:
+  # gitlab-config:
+  gitlab-data:
+  gitlab-log:
+  jenkins-data:
+  nexus-data:
+  registry-data:
+  # registry-config:
+  drone-data:
+  gocd-data:
+  vault-data:
+  vault-logs:
+  consul-data:
+  # consul-config:
+

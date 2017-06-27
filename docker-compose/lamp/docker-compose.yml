@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  apache-php:
+    depends_on:
+      - mariadb
+    image: php:apache
+    ports:
+      - "127.0.0.1:8000:80"
+    volumes:
+      - ./www:/var/www/html
+    networks:
+      - devops
+
+  mariadb:
+    image: mariadb
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=secure
+    ports:
+      - 127.0.0.1:3306:3306
+    networks:
+      - devops
+
+networks:
+  devops:
+    driver: bridge

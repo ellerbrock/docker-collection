@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  openproject:
+    image: openproject/community:7
+    volumes:
+      - openproject-data:/var/lib/postgresql/9.4/main
+      - openproject-db:/var/log/supervisor
+      - openproject-log:/var/log/supervisor
+    ports:
+      - 3000:80
+    networks:
+      - devops
+
+networks:
+  devops:
+    driver: bridge
+
+volumes:
+  openproject-data:
+  openproject-db:
+  openproject-log:
+

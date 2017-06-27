@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  ##########################################
+  #                 Base                   #
+  ##########################################
+
+  base:
+    container_name: base
+    image: ${TAG_USER}/base:${TAG_BASE_VERSION}
+    build:
+      context: ./dockerfiles/base
+      dockerfile: Dockerfile
+      args:
+        - MSG
+    networks:
+      - devops
+
+##########################################
+#      Generall Docker Settings          #
+##########################################
+
+networks:
+  devops:
+    driver: bridge
+
