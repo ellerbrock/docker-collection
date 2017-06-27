@@ -7,17 +7,15 @@
 
 FROM alpine:3.6
 
-MAINTAINER Maik Ellerbrock
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
-ENV VERSION 0.1.0
+ENV VERSION 0.1.1
 
 # Optional Configuration Parameter
-ARG SYSTEM_TZ
 ARG SERVICE_USER
 ARG SERVICE_HOME
 
 # Default Settings
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-download}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 
@@ -27,17 +25,12 @@ RUN \
     bash \
     git \
     dumb-init \
-    openssl \
-    tzdata && \
-  cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
-  echo "${SYSTEM_TZ}" > /etc/TZ && \
+    openssl && \
   apk del tzdata
 
 USER    ${SERVICE_USER}
-
 WORKDIR ${SERVICE_HOME}
+VOLUME  ${SERVICE_HOME}
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-
 CMD [ "git", "--help" ]
-

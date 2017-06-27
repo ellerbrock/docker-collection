@@ -19,7 +19,7 @@ _MongoDB based on Alpine Linux Edge running as unprivileged User_
 
 As Base Image i use [Alpine Linux](https://alpinelinux.org/) which is lightweight Distribution with a small surface area for security concerns, but with enough functionality for development and interactive debugging.
 
-To prevent zombie reaping processes i run [dumb-init](https://github.com/Yelp/dumb-init) as PID 1 which forwards signals to all processes running in the container. 
+To prevent zombie reaping processes i run [dumb-init](https://github.com/Yelp/dumb-init) as PID 1 which forwards signals to all processes running in the container.
 
 ## Configuration Parameter
 
@@ -27,7 +27,6 @@ _These Settings are **optional**, if not set the default values will be used._
 
 ```
 # Optional Configuration Parameter
-ARG SYSTEM_TZ         # Timezone
 ARG SERVICE_USER      # Mongo User
 ARG SERVICE_HOME      # Mongo Database Directory
 ARG SERVICE_PORT      # Mongo Port
@@ -35,29 +34,11 @@ ARG SERVICE_LOGFILE   # Mongo Logfile
 ARG SERVICE_LOGLEVEL  # Mongo Loglevel
 
 # Default Settings
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-mongo}
 ENV SERVICE_HOME ${SERVICE_HOME:-/data/db}
 ENV SERVICE_PORT ${SERVICE_PORT:-27017}
 ENV SERVICE_LOGFILE ${SERVICE_LOGFILE:-/data/log/mongod.log}
 ENV SERVICE_LOGLEVEL ${SERVICE_LOGLEVEL:-vvv}
-```
-
-### Dockerfile example:
-
-```
-docker build \
-  --build-arg SERVICE_USER=ellerbrock \
-  -t ellerbrock/alpine-harden:latest .
-```
-Documentation: <https://docs.docker.com/engine/reference/builder/#/arg>
-
-### docker-compose example: 
-
-```
-  args:
-    SERVICE_USER: ellerbrock
-    ...
 ```
 
 Documentation: <https://docs.docker.com/compose/compose-file/#/args>

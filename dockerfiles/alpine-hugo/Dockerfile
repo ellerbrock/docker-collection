@@ -7,6 +7,8 @@
 
 FROM golang:alpine3.6
 
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
+
 ENV GOPATH /go
 
 RUN \
@@ -22,13 +24,10 @@ RUN \
   rm -rf $GOPATH/src/* && \
   apk del .build-deps
 
-USER hugo
-
+USER    hugo
 WORKDIR /site
-
-EXPOSE 1313
+VOLUME  /site
+EXPOSE  1313
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--", "hugo"]
-
 CMD [ "--help" ]
-

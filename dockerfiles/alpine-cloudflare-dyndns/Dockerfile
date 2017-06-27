@@ -7,12 +7,11 @@
 
 FROM alpine:3.6
 
-MAINTAINER Maik Ellerbrock
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
-ENV VERSION 0.2.0
+ENV VERSION 0.2.1
 
 # Optional Configuration Parameter
-ARG SYSTEM_TZ
 ARG SERVICE_USER
 ARG EXTERNAL_IP
 
@@ -23,7 +22,6 @@ ARG CF_ZONE_NAME
 ARG CF_DOMAIN_NAME
 
 # Default Settings (for optional Parameter)
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-cloudflare}
 
 ENV EXTERNAL_IP ${EXTERNAL_IP}
@@ -40,13 +38,8 @@ RUN \
     curl \
     dumb-init \
     jq \
-    openssl \
-    tzdata && \
-  cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
-  echo "${SYSTEM_TZ}" > /etc/TZ && \
-  apk del tzdata
+    openssl
 
-USER    ${SERVICE_USER}
+USER ${SERVICE_USER}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-

@@ -2,7 +2,7 @@
 
 # alpine-harden
 
-_Alpine Linux 3.5 harden with an unprivileged user_ 
+_Alpine Linux harden with an unprivileged user_
 
 [![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-harden.svg)](https://hub.docker.com/r/ellerbrock/alpine-harden/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-harden.svg)](https://hub.docker.com/r/ellerbrock/alpine-harden/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-harden/status)](https://quay.io/repository/ellerbrock/alpine-harden) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
@@ -17,7 +17,7 @@ _Alpine Linux 3.5 harden with an unprivileged user_
 
 As Base Image i use [Alpine Linux](https://alpinelinux.org/) which is lightweight Distribution with a small surface area for security concerns, but with enough functionality for development and interactive debugging.
 
-To prevent zombie reaping processes i run [dumb-init](https://github.com/Yelp/dumb-init) as PID 1 which forwards signals to all processes running in the container. 
+To prevent zombie reaping processes i run [dumb-init](https://github.com/Yelp/dumb-init) as PID 1 which forwards signals to all processes running in the container.
 
 
 ## Configuration Parameter
@@ -26,31 +26,12 @@ _These Settings are **optional**, if not set the default values will be used._
 
 ```
 # Optional Configuration Parameter
-ARG SYSTEM_TZ     # Timezone
 ARG SERVICE_USER  # Username
 ARG SERVICE_HOME  # User Home Directory
 
 # Default Settings
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-app}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
-```
-
-### Dockerfile example:
-
-```
-docker build \
-  --build-arg SERVICE_USER=ellerbrock \
-  -t ellerbrock/alpine-harden:latest .
-```
-Documentation: <https://docs.docker.com/engine/reference/builder/#/arg>
-
-### docker-compose example: 
-
-```
-  args:
-    SERVICE_USER: ellerbrock
-    ...
 ```
 
 Documentation: <https://docs.docker.com/compose/compose-file/#/args>

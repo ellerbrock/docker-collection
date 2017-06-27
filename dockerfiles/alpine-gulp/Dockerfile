@@ -7,22 +7,18 @@
 
 FROM node:8.1-alpine
 
-MAINTAINER Maik Ellerbrock (https://github.com/ellerbrock)
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
-ENV VERSION 0.0.1
+ENV VERSION 0.0.2
 
 RUN \
   apk add --no-cache dumb-init && \
   npm install -g yarn && \
   yarn global add gulp-cli
 
-USER node
-
+USER    node
 WORKDIR /site
-
-VOLUME /site
+VOLUME  /site
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-
 CMD [ "gulp" ]
-

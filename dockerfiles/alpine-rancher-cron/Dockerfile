@@ -7,16 +7,14 @@
 
 FROM alpine:3.6
 
-MAINTAINER Maik Ellerbrock
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
-ENV VERSION 0.1.0
+ENV VERSION 0.1.1
 
 # Optional Configuration Parameter
-ARG SYSTEM_TZ
 ARG SERVICE_USER
 
 # Default Settings (for optional Parameter)
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-bench-security}
 
 # Others
@@ -28,8 +26,7 @@ RUN \
   adduser -s /sbin/nologin -u 1000 -H -D rancher-cron && \
   apk add --no-cache \
     ca-certificates \
-    dumb-init \
-    tzdata && \
+    dumb-init && \
   apk add --no-cache --virtual build-deps \
     build-base \
     bzr \
@@ -37,8 +34,6 @@ RUN \
     go \
     make \
     mercurial && \
-  cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
-  echo "${SYSTEM_TZ}" > /etc/TZ && \
   mkdir -p \
     ${GOPATH}/bin \
     ${GOPATH}/pkg \
@@ -57,4 +52,3 @@ RUN \
 USER rancher-cron
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "rancher-cron" ]
-

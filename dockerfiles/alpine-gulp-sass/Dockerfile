@@ -7,7 +7,7 @@
 
 FROM node:8.1-alpine
 
-MAINTAINER Maik Ellerbrock (https://github.com/ellerbrock)
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
 ENV VERSION 0.0.1
 
@@ -25,6 +25,4 @@ RUN \
 VOLUME /site
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-
 CMD [ "gulp" ]
-

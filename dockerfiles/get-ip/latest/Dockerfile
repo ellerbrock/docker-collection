@@ -7,11 +7,10 @@
 
 FROM php:apache
 
-MAINTAINER Maik Ellerbrock
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
 ENV VERSION 0.0.1
 
 COPY ./www/* /var/www/html/
 
 USER ${SERVICE_USER}
-

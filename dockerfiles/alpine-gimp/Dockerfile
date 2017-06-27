@@ -9,40 +9,30 @@ FROM alpine:3.6
 
 LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
-ENV VERSION 0.1.1
-
 # Optional Configuration Parameter
 ARG SERVICE_USER
 ARG SERVICE_HOME
 
 # Default Settings
-ENV SERVICE_USER ${SERVICE_USER:-vim}
+ENV SERVICE_USER ${SERVICE_USER:-gimp}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
-ENV TERM xterm-256color
+
+ENV VERSION 0.0.1
+ENV URL https://github.com/ellerbrock
 
 RUN \
   adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
   apk add --no-cache \
+    dbus-x11 \
     dumb-init \
-    vim \
-    lua && \
-  apk add --no-cache --virtual .build-deps \
-    bash \
-    git \
-    curl \
-    openssl && \
-  curl https://j.mp/spf13-vim3 -L > /tmp/spf13-vim.sh && \
-  bash -c "source /tmp/spf13-vim.sh" && \
-  rm -rf /root/.spf13-vim-3/.git && \
-  cp -LR /root/.vim* ${SERVICE_HOME} && \
-  cp -R /root/.spf13* ${SERVICE_HOME} && \
-  chown -R ${SERVICE_USER}.${SERVICE_USER} ${SERVICE_HOME} && \
-  apk del .build-deps && \
-  rm -rf /tmp/*
+    gimp \
+    mesa-gl \
+    ttf-freefont
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 VOLUME  ${SERVICE_HOME}
 
-ENTRYPOINT [ "/usr/bin/dumb-init", "vim" ]
-CMD        [ ".vimrc" ]
+ENTRYPOINT [ "/usr/bin/dumb-init", "/usr/bin/gimp" ]
+# CMD [ "" ]
+

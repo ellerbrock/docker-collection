@@ -9,10 +9,9 @@ FROM alpine:3.6
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.1.0
+ENV VERSION 0.1.1
 
 # Optional Configuration Parameter
-ARG SYSTEM_TZ
 ARG SERVICE_USER
 ARG SERVICE_HOME
 ARG SERVICE_PORT
@@ -20,7 +19,6 @@ ARG SERVICE_LOGFILE
 ARG SERVICE_LOGLEVEL
 
 # Default Settings
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-mongo}
 ENV SERVICE_HOME ${SERVICE_HOME:-/data/db}
 ENV SERVICE_PORT ${SERVICE_PORT:-27017}
@@ -36,20 +34,12 @@ RUN \
   echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
   apk add --no-cache \
     dumb-init \
-    mongodb \
-    tzdata && \
-  cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
-  echo "${SYSTEM_TZ}" > /etc/TZ && \
-  chmod +x /entrypoint.sh && \
-  apk del tzdata
+    mongodb && \
+  chmod +x /entrypoint.sh
 
 USER    ${SERVICE_USER}
-
 WORKDIR ${SERVICE_HOME}
-
 VOLUME  ${SERVICE_HOME}
-
 EXPOSE  ${SERVICE_PORT}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-

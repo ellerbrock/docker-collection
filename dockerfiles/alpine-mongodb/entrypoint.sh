@@ -12,4 +12,3 @@ mongod \
 echo "please wait - live logging in 5 secs ..."
 sleep 5
 tail -f ${SERVICE_LOGFILE}
-

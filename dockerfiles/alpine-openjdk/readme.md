@@ -14,7 +14,7 @@
 
 Base image is [Alpine Linux](https://alpinelinux.org/) which is a lightweight Distribution with a small surface area for security concerns, but with enough functionality for development and interactive debugging.  
 
-To prevent zombie reaping i run [dumb-init](https://github.com/Yelp/dumb-init) as PID 1 which forwards signals to all processes running in the container. 
+To prevent zombie reaping i run [dumb-init](https://github.com/Yelp/dumb-init) as PID 1 which forwards signals to all processes running in the container.
 
 To increase security the container runs as a unprivileged User.  
 In case you need to run for some reason stuff as root you can do this via `docker run -it -u root ellerbrock/alpine-openjdk ...`.
@@ -25,35 +25,13 @@ _These Settings are **optional**, if not set the default values will be used._
 
 ```
 # Optional Configuration Parameter
-ARG SYSTEM_TZ
 ARG SERVICE_USER
 ARG SERVICE_HOME
 
 # Default Settings
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-app}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
-
 ```
-
-### Dockerfile example:
-
-```
-docker build \
-  --build-arg SYSTEM_TZ=Europe/Berlin \
-  -t ellerbrock/alpine-openjdk:latest .
-```
-Documentation: <https://docs.docker.com/engine/reference/builder/#/arg>
-
-### docker-compose example: 
-
-```
-  args:
-    SYSTEM_TZ: Europe/Berlin
-    ...
-```
-
-Documentation: <https://docs.docker.com/compose/compose-file/#/args>
 
 ### Contact / Social Media
 

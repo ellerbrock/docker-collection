@@ -7,7 +7,7 @@
 
 FROM alpine:3.6
 
-MAINTAINER Maik Ellerbrock (https://github.com/ellerbrock)
+LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
 RUN \
   adduser -h /sass -s /sbin/nologin -D sass && \
@@ -18,10 +18,7 @@ RUN \
   rm -f /tmp/* /etc/apk/cache/*
 
 WORKDIR /sass
-
-VOLUME /sass
+VOLUME  /sass
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "sassc" ]
-
 CMD [ "--help" ]
-

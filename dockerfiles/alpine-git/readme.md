@@ -27,32 +27,13 @@ _These Settings are **optional**, if not set the default values will be used._
 
 ```
 # Optional Configuration Parameter
-ARG SYSTEM_TZ
 ARG SERVICE_USER
 ARG SERVICE_HOME
 
 # Default Settings
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
 ENV SERVICE_USER ${SERVICE_USER:-app}
 ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
 
-```
-
-### Dockerfile example:
-
-```
-docker build \
-  --build-arg SYSTEM_TZ=Europe/Berlin \
-  -t ellerbrock/alpine-git:latest .
-```
-Documentation: <https://docs.docker.com/engine/reference/builder/#/arg>
-
-### docker-compose example: 
-
-```
-  args:
-    SYSTEM_TZ: Europe/Berlin
-    ...
 ```
 
 Documentation: <https://docs.docker.com/compose/compose-file/#/args>
