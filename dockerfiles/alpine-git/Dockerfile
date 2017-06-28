@@ -27,7 +27,7 @@ RUN \
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
-COLUME  ${SERVICE_HOME}
+VOLUME  ${SERVICE_HOME}
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "git" ]
 CMD [ "--help" ]
