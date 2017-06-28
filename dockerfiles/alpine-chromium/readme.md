@@ -19,7 +19,7 @@
 
   docker run -t \
     --cap-add=SYS_ADMIN \
-    -e DISPLAY=${P}:0 \
+    -e DISPLAY=${IP}:0 \
     ellerbrock/alpine-chromium
 ```
 

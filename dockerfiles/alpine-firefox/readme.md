@@ -18,7 +18,7 @@
   xhost + ${IP}
 
   docker run -t \
-    -e DISPLAY=${P}:0 \
+    -e DISPLAY=${IP}:0 \
     ellerbrock/alpine-firefox
 ```
 
