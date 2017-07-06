@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  rancher:
+    image: rancher/server:latest
+    volumes:
+      - rancher-mysql:/var/lib/mysql
+    ports:
+      - "${PORT_RANCHER_GUI}:8080"
+      - "${PORT_RANCHER_NODES}:9345"
+    command: [
+      "--db-host", "${MYSQL_HOST}",
+      "--db-port", "${MYSQL_PORT}",
+      "--db-user", "${MYSQL_USER}",
+      "--db-pass", "${MYSQL_PASS}",
+      "--db-name", "${MYSQL_DB}",
+      "--advertise-address", "${ADVERTISE_IP}"
+    ]
+    networks:
+      - devops
+
+networks:
+  devops:
+    driver: bridge
+
+volumes:
+  rancher-mysql:
+
