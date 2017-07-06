@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    volumes:
+      - gitlab-data:/var/opt/gitlab
+      - gitlab-logs:/var/log/gitlab
+    ports:
+      - "${PORT_GITLAB_SSH}:22"
+      - "${PORT_GITLAB_GUI}:80"
+    networks:
+      - devops
+
+  drone-server:
+    image: drone/drone:latest
+    ports:
+      - ${PORT_DRONE}:8000
+    volumes:
+      - drone-data:/var/lib/drone/
+    environment:
+      - DRONE_OPEN=true
+      - DRONE_GITLAB=true
+      - DRONE_GITLAB_CLIENT=${DRONE_GITLAB_CLIENT}
+      - DRONE_GITLAB_SECRET=${DRONE_GITLAB_SECRET}
+      - DRONE_SECRET=${DRONE_SECRET}
+    depends_on:
+      - gitlab
+    networks:
+      - devops
+
+  drone-agent:
+    image: drone/drone:latest
+    command: agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      - DRONE_SECRET=${DRONE_SECRET}
+    depends_on:
+      - drone-server
+    networks:
+      - devops
+
+networks:
+  devops:
+    driver: bridge
+
+volumes:
+  gitlab-data:
+  gitlab-logs:
+  drone-data:
+
