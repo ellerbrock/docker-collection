@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  rancher:
+    image: rancher/server:latest
+    volumes:
+      - rancher-mysql:/var/lib/mysql
+    ports:
+      - "${PORT_RANCHER_GUI}:8080"
+    networks:
+      - devops
+
+networks:
+  devops:
+    driver: bridge
+
+volumes:
+  rancher-mysql:
+
