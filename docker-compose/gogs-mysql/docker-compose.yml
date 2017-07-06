@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  googs:
+    image: gogs/gogs:latest
+    volumes:
+      - gogs-data:/data
+    ports:
+      - "${PORT_GOOGS_SSH}:22"
+      - "${PORT_GOOGS_GUI}:3000"
+    networks:
+      - devops
+
+  mariadb:
+    image: mariadb:10
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASS}
+
+networks:
+  devops:
+    driver: bridge
+
+volumes:
+  gogs-data:
+
