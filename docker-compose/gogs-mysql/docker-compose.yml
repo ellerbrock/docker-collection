@@ -2,23 +2,27 @@ version: '3'
 
 services:
 
-  googs:
-    image: gogs/gogs:latest
-    volumes:
-      - gogs-data:/data
-    ports:
-      - "${PORT_GOOGS_SSH}:22"
-      - "${PORT_GOOGS_GUI}:3000"
-    networks:
-      - devops
-
   mariadb:
-    image: mariadb:10
+    image: mariadb:latest
+    volumes:
+      - mariadb-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASS}
+
+  gogs:
+    image: gogs/gogs:latest
+    volumes:
+      - gogs-data:/data
+    ports:
+      - "${PORT_GOGS_SSH}:22"
+      - "${PORT_GOGS_GUI}:3000"
+    depends_on:
+      - mariadb
+    networks:
+      - devops
 
 networks:
   devops:
@@ -26,4 +30,4 @@ networks:
 
 volumes:
   gogs-data:
-
+  mariadb-data:

@@ -2,13 +2,13 @@ version: '3'
 
 services:
 
-  googs:
+  gogs:
     image: gogs/gogs:latest
     volumes:
       - gogs-data:/data
     ports:
-      - "${PORT_GOOGS_SSH}:22"
-      - "${PORT_GOOGS_GUI}:3000"
+      - "${PORT_GOGS_SSH}:22"
+      - "${PORT_GOGS_GUI}:3000"
     networks:
       - devops
 
