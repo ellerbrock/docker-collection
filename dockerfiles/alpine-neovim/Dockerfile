@@ -21,11 +21,11 @@ RUN \
   adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
   apk add --no-cache \
     dumb-init \
-    vim
+    neovim
 
 USER    ${SERVICE_USER}
 WORKDIR ${SERVICE_HOME}
 VOLUME  ${SERVICE_HOME}
 
-ENTRYPOINT [ "/usr/bin/dumb-init", "--", "vim" ]
-CMD [ "--version" ]
+ENTRYPOINT [ "/usr/bin/dumb-init", "--", "nvim" ]
+

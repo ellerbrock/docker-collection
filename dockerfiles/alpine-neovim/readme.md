@@ -1,12 +1,12 @@
 ![docker](https://github.frapsoft.com/top/docker-security.jpg)
 
-# alpine-vim
+# alpine-neovim
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-vim.svg)](https://hub.docker.com/r/ellerbrock/alpine-vim/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-vim.svg)](https://hub.docker.com/r/ellerbrock/alpine-vim/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-neovim.svg)](https://hub.docker.com/r/ellerbrock/alpine-neovim/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-neovim.svg)](https://hub.docker.com/r/ellerbrock/alpine-neovim/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
 ## Installation
 
-`docker pull ellerbrock/alpine-vim`
+`docker pull ellerbrock/alpine-neovim`
 
 ##  Contact
 
