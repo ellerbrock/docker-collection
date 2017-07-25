@@ -5,23 +5,33 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM golang:alpine3.6
+FROM alpine:3.6
 
 LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
 ENV GOPATH /go
+ENV PATH $GOPATH/bin:$PATH
 
 RUN \
   adduser -h /site -s /sbin/nologin -u 1000 -D hugo && \
   apk add --no-cache \
-    dumb-init \
+    dumb-init && \
+  apk add --no-cache --virtual .build-deps \
+	gcc \
+	musl-dev \
+	go \
     git && \
-  go get github.com/gohugoio/hugo && \
+  mkdir -p \
+    ${GOPATH}/bin \
+    ${GOPATH}/pkg \
+    ${GOPATH}/src && \
+  go get github.com/kardianos/govendor && \
+  govendor get github.com/gohugoio/hugo && \
   cd $GOPATH/src/github.com/gohugoio/hugo && \
   go install && \
   cd $GOPATH && \
-  rm -rf pkg src && \
-  apk del --no-cache git go
+  rm -rf pkg src .cache bin/govendor && \
+  apk del .build-deps
 
 USER    hugo
 WORKDIR /site
