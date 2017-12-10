@@ -2,14 +2,14 @@
 
 # alpine-hugo
 
-[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/alpine-hugo.svg)](https://hub.docker.com/r/ellerbrock/alpine-hugo/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/alpine-hugo.svg)](https://hub.docker.com/r/ellerbrock/alpine-hugo/) [![Quay Status](https://quay.io/repository/ellerbrock/alpine-hugo/status)](https://quay.io/repository/ellerbrock/alpine-hugo/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
+[![Docker Automated Build](https://img.shields.io/docker/automated/ellerbrock/hugo.svg)](https://hub.docker.com/r/ellerbrock/hugo/) [![Docker Pulls](https://img.shields.io/docker/pulls/ellerbrock/hugo.svg)](https://hub.docker.com/r/ellerbrock/hugo/) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg)](https://github.com/ellerbrock/open-source-badges/) [![Gitter Chat](https://badges.gitter.im/frapsoft/frapsoft.svg)](https://gitter.im/frapsoft/frapsoft/)
 
-- Docker: [ellerbrock/alpine-hugo](https://hub.docker.com/r/ellerbrock/alpine-hugo/)
-- Quay: [ellerbrock/alpine-hugo](https://quay.io/repository/ellerbrock/alpine-hugo)
+- Docker: [ellerbrock/hugo](https://hub.docker.com/r/ellerbrock/hugo/)
+- Quay: [ellerbrock/hugo](https://quay.io/repository/ellerbrock/hugo)
 
 ## Installation
 
-`docker pull ellerbrock/alpine-hugo`
+`docker pull ellerbrock/hugo`
 
 ## Example
 
@@ -19,7 +19,7 @@ Run inside your local hugo folder and bind to localhost interface:
 docker run -it \
   -p 127.0.0.1:1313:1313 \
   -v ${PWD}:/site \
-ellerbrock/alpine-hugo server --bind 0.0.0.0 -w
+ellerbrock/hugo server --bind 0.0.0.0 -w
 ```
 
 ### Contact / Social Media
