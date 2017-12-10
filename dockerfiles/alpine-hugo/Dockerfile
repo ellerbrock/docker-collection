@@ -5,9 +5,7 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM golang:1.9-alpine3.6 AS build
-
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
+FROM golang:1.10-rc-alpine3.7 AS build
 
 RUN \
   apk add --no-cache \
@@ -16,13 +14,13 @@ RUN \
   go get github.com/golang/dep/cmd/dep && \
   go get github.com/kardianos/govendor && \
   govendor get github.com/gohugoio/hugo && \
-  cd ${GOPATH}/src/github.com/gohugoio/hugo && \
+  cd /go/src/github.com/gohugoio/hugo && \
   dep ensure && \
   go install -ldflags '-s -w'
 
 # ---
 
-FROM alpine:3.6
+FROM alpine:3.7
 
 COPY --from=build /go/bin/hugo /bin/hugo
 
