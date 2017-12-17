@@ -5,23 +5,28 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM alpine:3.6
+FROM alpine:3.7
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
+LABEL \
+  org.label-schema.name="docker-bench-security" \
+  org.label-schema.url="https://dockerbench.com" \
+  org.label-schema.vcs-url="https://github.com/docker/docker-bench-security.git"
 
-ENV VERSION 0.1.1
-
+# Switch to the HTTPS endpoint for the apk repositories
+# https://github.com/gliderlabs/docker-alpine/issues/184
 RUN \
+  sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories && \
   apk add --no-cache \
     docker \
-    dumb-init \
-    git && \
-  rm -rf /usr/bin/docker-* /usr/bin/dockerd && \
-  git clone https://github.com/docker/docker-bench-security.git /tmp/bench-security && \
-  cp /tmp/bench-security/*.sh /usr/local/bin && \
-  cp -R /tmp/bench-security/tests /usr/local/bin && \
-  rm -rf /tmp/*
+    dumb-init && \
+  rm -rf /usr/bin/docker?*
+
+COPY ./*.sh /usr/local/bin/
+COPY ./tests/*.sh /usr/local/bin/tests/
+
+HEALTHCHECK CMD exit 0
 
 WORKDIR /usr/local/bin
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "docker-bench-security.sh" ]
+
