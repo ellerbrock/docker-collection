@@ -5,11 +5,10 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM node:8.1-alpine
+FROM node:8.9-alpine
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
-
-ENV VERSION 0.0.2
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.1.0"
 
 RUN \
   apk add --no-cache dumb-init && \

@@ -7,10 +7,8 @@
 
 FROM alpine:3.7
 
-LABEL \
-  org.label-schema.name="docker-bench-security" \
-  org.label-schema.url="https://dockerbench.com" \
-  org.label-schema.vcs-url="https://github.com/docker/docker-bench-security.git"
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.0.2"
 
 # Switch to the HTTPS endpoint for the apk repositories
 # https://github.com/gliderlabs/docker-alpine/issues/184
@@ -29,4 +27,3 @@ HEALTHCHECK CMD exit 0
 WORKDIR /usr/local/bin
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "docker-bench-security.sh" ]
-

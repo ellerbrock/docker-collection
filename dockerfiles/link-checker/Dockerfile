@@ -7,9 +7,9 @@
 
 FROM ubuntu:xenial
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.0.2"
 
-ENV VERSION 0.1.1
 ENV DUMP_INIT_VERSION 1.2.0
 
 # Optional Configuration Parameter

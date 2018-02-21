@@ -2,7 +2,7 @@
 # Docker:  https://hub.docker.com/r/gohugoio/
 # Twitter: https://twitter.com/gohugoio
 
-FROM golang:1.10-rc-alpine3.7 AS build
+FROM golang:1.10-alpine AS build
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
@@ -22,6 +22,9 @@ RUN \
 
 FROM scratch
 
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.0.2"
+
 COPY --from=build /go/bin/hugo /bin/hugo
 
 WORKDIR /site
@@ -30,4 +33,3 @@ EXPOSE  1313
 
 ENTRYPOINT [ "/hugo" ]
 CMD [ "--help" ]
-

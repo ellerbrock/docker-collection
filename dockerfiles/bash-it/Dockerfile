@@ -13,13 +13,12 @@
 
 FROM bash:4.4
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.1.0"
 
 # Optional Configuration Parameter
 ARG SERVICE_USER
 ARG SERVICE_HOME
-
-ENV VERSION 0.0.6
 
 # Default Settings (for optional Parameter)
 ENV SERVICE_USER bashit

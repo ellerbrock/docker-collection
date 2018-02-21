@@ -5,11 +5,10 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM alpine:3.6
+FROM alpine:3.7
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
-
-ENV VERSION 0.0.1
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.0.2"
 
 # Optional Configuration Parameter
 ARG SERVICE_USER
@@ -37,4 +36,3 @@ VOLUME ${SERVICE_HOME}
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "/usr/bin/chromium-browser" ]
 CMD [ "https://github.com/ellerbrock" ]
-

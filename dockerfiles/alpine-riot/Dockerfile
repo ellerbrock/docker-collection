@@ -5,11 +5,10 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM node:8.2-alpine
+FROM node:8.9-alpine
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
-
-ENV VERSION 0.0.1
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.0.2"
 
 RUN \
   apk add --no-cache \
@@ -40,4 +39,3 @@ ENTRYPOINT [ "dumb-init", "--", "http-server" ]
 # Docs: https://www.npmjs.com/package/http-server
 
 # CMD [ "" ]
-

@@ -7,9 +7,8 @@
 
 FROM php:apache
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
-
-ENV VERSION 0.0.1
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.0.2"
 
 COPY ./www/* /var/www/html/
 

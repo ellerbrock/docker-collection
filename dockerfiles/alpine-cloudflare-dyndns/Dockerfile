@@ -7,9 +7,8 @@
 
 FROM alpine:3.7
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
-
-ENV VERSION 0.2.2
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.2.3"
 
 # Optional Configuration Parameter
 ARG SERVICE_USER
