@@ -22,7 +22,9 @@ RUN \
 
 FROM scratch
 
-COPY --from=build /go/bin/hugo /hugo
+COPY --from=build /go/bin/hugo /bin/hugo
+
+WORKDIR /site
 
 EXPOSE  1313
 

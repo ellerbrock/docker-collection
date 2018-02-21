@@ -23,7 +23,7 @@ RUN \
   pip install aliyuncli && \
   pip install --no-cache-dir -r /tmp/requirements.txt && \
   apk del build-base && \
-  rm -rf /tmp
+  rm -rf /tmp/*
 
 USER ${SERVICE_USER}
 

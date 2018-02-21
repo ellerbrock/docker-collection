@@ -5,7 +5,7 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM alpine:3.6
+FROM alpine:3.7
 
 LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
 
