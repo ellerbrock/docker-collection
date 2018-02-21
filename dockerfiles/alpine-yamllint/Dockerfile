@@ -1,0 +1,29 @@
+# Developer: Maik Ellerbrock <opensource@frapsoft.com>
+#
+# GitHub:  https://github.com/ellerbrock
+# Twitter: https://twitter.com/frapsoft
+# Docker:  https://hub.docker.com/u/ellerbrock
+# Quay:    https://quay.io/user/ellerbrock
+
+FROM python:2-alpine3.7
+
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.0.1"
+
+ARG SERVICE_USER
+ARG SERVICE_HOME
+
+ENV SERVICE_USER ${SERVICE_USER:-app}
+ENV SERVICE_HOME ${SERVICE_HOME:-/home/${SERVICE_USER}}
+
+WORKDIR ${SERVICE_HOME}
+
+RUN \
+  adduser -h ${SERVICE_HOME} -s /sbin/nologin -u 1000 -D ${SERVICE_USER} && \
+  pip install yamllint
+
+USER    ${SERVICE_USER}
+VOLUME  ${SERVICE_HOME}
+
+ENTRYPOINT [ "yamllint" ]
+CMD [ "--help" ]
