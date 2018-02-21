@@ -1,8 +1,0 @@
-policies:
-  - name: my-first-policy
-    resource: ec2
-    filters:
-      - "tag:Custodian": present
-    actions:
-      - stop
-
