@@ -5,9 +5,11 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM alpine:3.6
+FROM alpine:3.8
 
-LABEL maintainer "Maik Ellerbrock <opensource@frapsoft.com>"
+LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
+      com.frapsoft.version="0.1.0"
+
 
 # Optional Configuration Parameter
 ARG SERVICE_USER
@@ -35,4 +37,3 @@ VOLUME  ${SERVICE_HOME}
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "/usr/bin/gimp" ]
 # CMD [ "" ]
-

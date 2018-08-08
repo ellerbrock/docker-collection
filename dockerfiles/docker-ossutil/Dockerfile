@@ -4,7 +4,7 @@
 # Twitter:      https://twitter.com/gohugoio
 # Website:      https://gohugo.io/
 
-FROM golang:1.10-rc-alpine3.7 AS build
+FROM golang:alpine AS build
 
 ENV CGO_ENABLED=0
 ENV GOOS=linux
@@ -22,10 +22,10 @@ RUN \
 
 # ---
 
-FROM alpine:3.7
+FROM alpine:3.8
 
 LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
-      com.frapsoft.version="0.0.2"
+      com.frapsoft.version="0.1.0"
 
 COPY --from=build /go/bin/ /bin/
 

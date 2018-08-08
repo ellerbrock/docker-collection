@@ -5,10 +5,10 @@
 # Docker:  https://hub.docker.com/u/ellerbrock
 # Quay:    https://quay.io/user/ellerbrock
 
-FROM node:8.9-alpine
+FROM node:alpine
 
 LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
-      com.frapsoft.version="0.0.2"
+      com.frapsoft.version="0.1.0"
 
 RUN \
   apk add --no-cache \
