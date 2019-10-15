@@ -9,12 +9,12 @@
 #
 # Description:
 # -----------
-# Bash Shell v.4.4 with Bash-it, bats, bash-completion
+# Bash Shell v.5 with Bash-it, bats, bash-completion
 
-FROM bash:4.4
+FROM bash:5
 
 LABEL com.frapsoft.maintainer="Maik Ellerbrock" \
-      com.frapsoft.version="0.1.0"
+      com.frapsoft.version="0.2.0"
 
 # Optional Configuration Parameter
 ARG SERVICE_USER
