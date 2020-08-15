@@ -18,15 +18,20 @@ if( process.env.GULP_DEBUG ) {
   console.log(`CSS: ${config.css}`)
 }
 
-gulp.task('default', [ 'sass', 'sass:watch' ]);
-
-gulp.task('sass', function () {
+const runSass = function() {
   return gulp.src(config.sass)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(config.css));
+}
+
+gulp.task('sass', function () {
+  return runSass();
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch(config.sass, ['sass']);
+  gulp.watch(config.sass).on('change', function(event){
+    return runSass();
+  });
 });
 
+gulp.task('default', gulp.parallel( 'sass', 'sass:watch' ));
