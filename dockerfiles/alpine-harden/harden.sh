@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -x
 set -e
 
@@ -35,8 +35,8 @@ find /sbin /usr/sbin ! -type d \
 # Remove world-writable permissions.
 # This breaks apps that need to write to /tmp,
 # such as ssh-agent.
-find / -xdev -type d -perm +0002 -exec chmod o-w {} +
-find / -xdev -type f -perm +0002 -exec chmod o-w {} +
+find / -xdev -type d -perm /0002 -exec chmod o-w {} +
+find / -xdev -type f -perm /0002 -exec chmod o-w {} +
 
 # Remove unnecessary user accounts.
 sed -i -r "/^(${SERVICE_USER}|root|sshd)/!d" /etc/group
@@ -68,7 +68,7 @@ find $sysdirs -xdev -type d \
   -exec chmod 0755 {} \;
 
 # Remove all suid files.
-find $sysdirs -xdev -type f -a -perm +4000 -delete
+find $sysdirs -xdev -type f -a -perm /4000 -delete
 
 # Remove other programs that could be dangerous.
 find $sysdirs -xdev \( \
